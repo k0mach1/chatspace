@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  get 'groups/new'
-
-  get 'groups/edit'
+  root 'groups/new'
 
   devise_for :users
+
+  resources :groups, only: [:new, :create, :edit, :update] do
+
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
