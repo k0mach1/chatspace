@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'messages/new'
+
+  get 'messages/create'
+
   root to: 'groups#new'
 
   devise_for :users
