@@ -15,8 +15,7 @@ class GroupsController < ApplicationController
   end
 
   def update
-    @group = Group.new(group_params)
-    return redirect_to @group, alert:'グループの更新に失敗しました！' unless @group.save
+    return redirect_to @group, alert:'グループの更新に失敗しました！' unless @group.update(group_params)
     redirect_to @group, notice: 'グループの更新に成功しました！'
   end
 
