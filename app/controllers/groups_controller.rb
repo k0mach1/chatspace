@@ -1,5 +1,9 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: [:edit, :update]
+  before_action :set_group, only: [:show, :edit, :update]
+
+  def show
+    @message = Message.new
+  end
 
   def new
     @group = Group.new
