@@ -1,12 +1,6 @@
 Rails.application.routes.draw do
-  get 'messages/new'
-
-  get 'messages/create'
-
   root to: 'groups#new'
-
   devise_for :users
-
   resources :groups, only: [:show, :new, :create, :edit, :update]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
