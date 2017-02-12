@@ -23,6 +23,13 @@ module Chatspace
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
+    # deviseのフォームの日本語化
     config.i18n.default_locale = :ja
+
+    # rails g での無駄なhelperやassetsファイルの作成を防ぐ
+    config.generators do |g|
+      g.assets     false
+      g.helper     false
+    end
   end
 end
