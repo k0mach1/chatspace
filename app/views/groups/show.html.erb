@@ -1,0 +1,56 @@
+<%= stylesheet_link_tag "group", :media => "all" %>
+<div class='chat'>
+  <div class='chat-side'>
+    <div class='chat-user clearfix'>
+      <h5><%= current_user.name %></h5>
+      <div class='chat-user__actions'>
+        <a class='chat-user__action' href='/chat_groups/new'>
+          <i class='fa fa-pencil-square-o'></i>
+        </a>
+        <a class='chat-user__action' href='/users/edit'>
+          <i class='fa fa-cog'></i>
+        </a>
+      </div>
+    </div>
+    <ul class='chat-groups'>
+      <% @groups.each do |group| %>
+        <%= render partial: 'group', locals: { group: @group } %>
+      <% end %>
+    </ul>
+  </div>
+  <div class='chat-main'>
+    <div class='chat-header clearfix'>
+      <div class='chat-header--left'>
+        <h2><%= @group.name %></h2>
+        <p class='chat-header__users'>
+          Members:
+          <% @users.each do |user| %>
+            <span class='chat-header__user'><%= user.name %></span>
+          <% end %>
+        </p>
+      </div>
+      <div class='chat-header--right'>
+        <a class='chat-header__edit-btn' href='/chat_groups/9342/edit'>Edit</a>
+      </div>
+    </div>
+    <div class='chat-body'>
+      <ul class='chat-messages'>
+        <% @messages.each do |message| %>
+          <%= render partial: 'message', locals: { message: message } %>
+        <% end %>
+      </ul>
+    </div>
+    <div class='chat-footer'>
+      <%= form_for ([@group, @message]), html: { class: "new_message", id: "new_message" } do |f| %>
+        <div class='chat-footer__body'>
+          <%= f.text_field :body, html: { rows: '1', placeholder: "type a message", id: "message_body" } %>
+          <label class='chat-footer__file'>
+            <%= f.file_field :image, html: {i: "message_image"} %>
+            <i class='fa fa-image'></i>
+          </label>
+        </div>
+        <%= f.submit %>
+      <% end %>
+    </div>
+  </div>
+</div>

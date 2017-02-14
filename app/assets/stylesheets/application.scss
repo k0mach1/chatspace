@@ -1,1 +1,8 @@
-@import "reset"
+@import "reset";
+// = require font-awesome
+
+.clearfix:after {
+  content: '';
+  display: block;
+  clear: both;
+}

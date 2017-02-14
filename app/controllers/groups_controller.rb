@@ -2,6 +2,9 @@ class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update]
 
   def show
+    @groups = Group.all
+    @users = @group.users
+    @messages = @group.messages
     @message = Message.new
   end
 

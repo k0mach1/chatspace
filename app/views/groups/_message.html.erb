@@ -1,0 +1,13 @@
+<li class='chat-message'>
+  <div class='chat-message__header clearfix'>
+    <p class='chat-message__name'>
+      <%= message.user.name %>
+    </p>
+    <p class='chat-message__time'>
+      <%= message.created_at %>
+    </p>
+  </div>
+  <p class='chat-message__body'>
+    <%= message.body %>
+  </p>
+</li>
