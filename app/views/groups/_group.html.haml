@@ -1,0 +1,8 @@
+%li.chat-group
+  %a.chat-group__link{:href => "/groups/#{group.id}"}
+    %p.chat-group__name= group.name
+    %p.chat-group__message
+      - if group.messages.blank?
+        まだメッセージはありません。
+      - else
+        = group.messages.last.body
