@@ -1,11 +1,11 @@
 <li class='chat-group'>
-  <a class='chat-group__link' href='/chat_groups/9302/messages'>
+  <a class='chat-group__link' href="/groups/<%= group.id %>">
     <p class='chat-group__name'><%= group.name %></p>
     <p class='chat-group__message'>
       <% if group.messages.blank? %>
         まだメッセージはありません。
       <% else %>
-        <%= group.messages.last %>
+        <%= group.messages.last.body %>
       <% end %>
     </p>
   </a>
