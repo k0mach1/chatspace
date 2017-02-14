@@ -5,10 +5,10 @@
       <h5><%= current_user.name %></h5>
       <div class='chat-user__actions'>
         <a class='chat-user__action' href='/chat_groups/new'>
-          <i class='fa fa-pencil-square-o'></i>
+          <%= fa_icon 'pencil-square-o' %>
         </a>
         <a class='chat-user__action' href='/users/edit'>
-          <i class='fa fa-cog'></i>
+          <%= fa_icon 'gear' %>
         </a>
       </div>
     </div>
@@ -46,7 +46,7 @@
           <%= f.text_field :body, placeholder: 'type a message', html: { rows: '1', id: "message_body" } %>
           <label class='chat-footer__file'>
             <%= f.file_field :image, html: {i: "message_image"} %>
-            <i class='fa fa-image'></i>
+            <%= fa_icon "file-image-o" %>
           </label>
         </div>
         <%= f.submit 'Send' %>
