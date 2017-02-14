@@ -2,5 +2,5 @@ class Message < ActiveRecord::Base
   belongs_to :user
   belongs_to :group
 
-  validates(:body , presence: true)
+  validates(:body, presence: true)
 end
