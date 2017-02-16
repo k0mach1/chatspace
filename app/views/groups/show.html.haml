@@ -2,11 +2,11 @@
 .chat
   .chat-side
     .chat-user.clearfix
-      %h5= current_user.name
+      %h5 = current_user.name
       .chat-user__actions
-        %a.chat-user__action{:href => "/chat_groups/new"}
+        %a.chat-user__action{ href: "/chat_groups/new" }
           = fa_icon 'pencil-square-o'
-        %a.chat-user__action{:href => "/users/edit"}
+        %a.chat-user__action{ href: "/users/edit" }
           = fa_icon 'gear'
     %ul.chat-groups
       - @groups.each do |group|
@@ -14,13 +14,13 @@
   .chat-main
     .chat-header.clearfix
       .chat-header--left
-        %h2= @group.name
+        %h2 = @group.name
         %p.chat-header__users
           Members:
           - @users.each do |user|
             %span.chat-header__user= user.name
       .chat-header--right
-        %a.chat-header__edit-btn{:href => "/chat_groups/9342/edit"} Edit
+        %a.chat-header__edit-btn{ href: "/chat_groups/9342/edit" } Edit
     .chat-body
       %ul.chat-messages
         - @messages.each do |message|
@@ -30,6 +30,6 @@
         .chat-footer__body
           = f.text_field :body, placeholder: 'type a message', html: { rows: '1', id: "message_body" }
           %label.chat-footer__file
-            = f.file_field :image, html: {i: "message_image"}
+            = f.file_field :image, html: { i: "message_image" }
             = fa_icon "file-image-o"
         = f.submit 'Send'
