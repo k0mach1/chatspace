@@ -1,0 +1,40 @@
+$(function() {
+   function buildHTML(message) {
+     append_me =
+     "<div class='chat-message__header clearfix'>"
+       + "<p class='chat-message__name'>"
+         + username
+       + "</p>"
+       + "<p class='chat-message__time'>"
+         + message.created_at
+       + "</p>"
+     + "</div>"
+     + "<p class='chat-message__body'>"
+       + message.body
+     + "</p>"
+    var html = $('<li class="chat-message">').append(append_me)
+    return html;
+   }
+  $('.new_message').on('submit', function(e) {
+    e.preventDefault();
+    message = $('input[type="text"]').val();
+    $.ajax({
+      type: 'POST',
+      url: window.location.href + "/messages",
+      data: {
+        message: {
+          body: message
+        }
+      },
+      dataType: 'json'
+    })
+    .done(function(data) {
+      var html = buildHTML(data);
+      $('.chat-messages').append(html);
+      $('input[type="text"]').val('');
+    })
+    .fail(function() {
+      alert('error');
+    });
+  });
+});

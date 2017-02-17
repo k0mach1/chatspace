@@ -1,4 +1,6 @@
 = stylesheet_link_tag "group", :media => "all"
+:javascript
+  var username = '#{current_user.name}'
 .chat
   .chat-side
     .chat-user.clearfix
@@ -26,10 +28,10 @@
         - @messages.each do |message|
           = render partial: 'message', locals: { message: message }
     .chat-footer
-      = form_for ([@group, @message]), html: { class: "new_message", id: "new_message" } do |f|
+      %form.new_message#new_message
         .chat-footer__body
-          = f.text_field :body, placeholder: 'type a message', html: { rows: '1', id: "message_body" }
+          %input{type: 'text'}
           %label.chat-footer__file
-            = f.file_field :image, html: {i: "message_image"}
+            = file_field :image, html: {i: "message_image"}
             = fa_icon "file-image-o"
-        = f.submit 'Send'
+        = submit_tag 'Send'

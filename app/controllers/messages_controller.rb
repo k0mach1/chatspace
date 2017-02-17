@@ -3,8 +3,11 @@ class MessagesController < ApplicationController
 
   def create
     @message = Message.new(message_params)
-    return redirect_to @group, alert: 'sssssssssssssssssssssss' unless @message.save
-    redirect_to @group
+    return redirect_to @group, alert: 'messageを入力してください' unless @message.save
+    respond_to do |format|
+      format.html { redirect_to @group }
+      format.json { render json: @message }
+    end
   end
 
   private
