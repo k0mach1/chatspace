@@ -1,7 +1,6 @@
 # encoding: utf-8
 
 class AvatarUploader < CarrierWave::Uploader::Base
-
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
@@ -11,12 +10,12 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # 格納するディレクトリを指定
   def store_dir
-    "#{model.id}"
+    model.id.to_s
   end
 
   # キャッシュを格納ディレクトリを指定
   def cache_dir
-    "cache"
+    'cache'
   end
   # storage :fog
 
@@ -57,5 +56,4 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
-
 end
