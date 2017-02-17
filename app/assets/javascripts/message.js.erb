@@ -1,29 +1,41 @@
 $(function() {
-   function buildHTML(message) {
-     append_me =
-     "<div class='chat-message__header clearfix'>"
-       + "<p class='chat-message__name'>"
-         + username
-       + "</p>"
-       + "<p class='chat-message__time'>"
-         + message.created_at
-       + "</p>"
-     + "</div>"
-     + "<p class='chat-message__body'>"
-       + message.body
-     + "</p>"
+  
+  function buildHTML(message) {
+    if (message.avatar) {
+      var image = '<img src="' + message.avatar + '">'
+    }
+
+    var append_me =
+      "<div class='chat-message__header clearfix'>"
+        + "<p class='chat-message__name'>"
+          + username
+        + "</p>"
+        + "<p class='chat-message__time'>"
+          + message.created_at
+        + "</p>"
+      + "</div>"
+      + "<p class='chat-message__body'>"
+        + message.body
+        if (image){
+          + image
+        }
+      + "</p>"
+
     var html = $('<li class="chat-message">').append(append_me)
     return html;
    }
+
   $('.new_message').on('submit', function(e) {
     e.preventDefault();
-    message = $('input[type="text"]').val();
+     var formed_image = new FormData($(this)[0]);
+    message = $('textarea').val();
     $.ajax({
       type: 'POST',
       url: window.location.href + "/messages",
       data: {
         message: {
           body: message
+          avatar: formed_image
         }
       },
       dataType: 'json'
@@ -31,7 +43,7 @@ $(function() {
     .done(function(data) {
       var html = buildHTML(data);
       $('.chat-messages').append(html);
-      $('input[type="text"]').val('');
+      $('textarea').val('');
     })
     .fail(function() {
       alert('error');

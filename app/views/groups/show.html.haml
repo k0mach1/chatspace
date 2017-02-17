@@ -28,10 +28,10 @@
         - @messages.each do |message|
           = render partial: 'message', locals: { message: message }
     .chat-footer
-      %form.new_message#new_message
+      = form_for [@group, @message], class: 'clearfix' do |f|
         .chat-footer__body
-          %input{type: 'text'}
+          = f.text_area :body, row: 1, placeholder: 'type a message'
           %label.chat-footer__file
-            = file_field :image, html: {i: "message_image"}
-            = fa_icon "file-image-o"
-        = submit_tag 'Send'
+            = f.file_field :avatar
+            %i.fa.fa-image
+        = f.submit 'Send'
