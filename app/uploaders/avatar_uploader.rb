@@ -7,7 +7,17 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
+  storage :fog
+
+  # 格納するディレクトリを指定
+  def store_dir
+    "#{model.id}"
+  end
+
+  # キャッシュを格納ディレクトリを指定
+  def cache_dir
+    "cache"
+  end
   # storage :fog
 
   # Override the directory where uploaded files will be stored.
