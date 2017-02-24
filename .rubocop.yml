@@ -1,6 +1,4 @@
 AllCops:
-  Rails:
-    Enabled: true
   Include:
     - '**/Rakefile'
     - '**/config.ru'
@@ -12,6 +10,10 @@ AllCops:
     - 'bin/*'
     - !ruby/regexp /old_and_unused\.rb$/
 Metrics/LineLength:
-    Max: 100
+  Enabled: false
+
 Style/Documentation:
-    Enabled: false
+  Enabled: false
+
+Style/AsciiComments:
+  Enabled: false
