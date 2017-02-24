@@ -6,7 +6,7 @@
     .chat-user.clearfix
       %h5= current_user.name
       .chat-user__actions
-        %a.chat-user__action{:href => "new"}
+        %a.chat-user__action{:href => "/groups/new"}
           = fa_icon 'pencil-square-o'
         %a.chat-user__action{:href => "/users/edit"}
           = fa_icon 'gear'
@@ -22,7 +22,7 @@
           - @users.each do |user|
             %span.chat-header__user= user.name
       .chat-header--right
-        %a.chat-header__edit-btn{:href => "/chat_groups/9342/edit"} Edit
+        %a.chat-header__edit-btn{:href => "/groups/#{@group.id}/edit"} Edit
     .chat-body
       %ul.chat-messages
         - @messages.each do |message|

@@ -1,10 +1,7 @@
 $(function() {
-  
-  function buildHTML(message) {
-    if (message.avatar) {
-      var image = '<img src="' + message.avatar + '">'
-    }
 
+  function buildHTML(message) {
+    // appendするHTMLを定義
     var append_me =
       "<div class='chat-message__header clearfix'>"
         + "<p class='chat-message__name'>"
@@ -25,6 +22,7 @@ $(function() {
     return html;
    }
 
+  // 投稿の非同期化
   $('.new_message').on('submit', function(e) {
     e.preventDefault();
      var formed_image = new FormData($(this)[0]);
@@ -35,7 +33,9 @@ $(function() {
       data: {
         message: {
           body: message
-          avatar: formed_image
+          if(typeof formed_image !== 'undefined') {
+            avatar: formed_image
+          }
         }
       },
       dataType: 'json'
@@ -49,4 +49,8 @@ $(function() {
       alert('error');
     });
   });
+
+  // 10秒毎にぺーじをリロード
+  setInterval("location.reload()", 10000);
+
 });
