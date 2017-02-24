@@ -4,11 +4,11 @@
 .chat
   .chat-side
     .chat-user.clearfix
-      %h5= current_user.name
+      %h5 = current_user.name
       .chat-user__actions
         %a.chat-user__action{:href => "/groups/new"}
           = fa_icon 'pencil-square-o'
-        %a.chat-user__action{:href => "/users/edit"}
+        %a.chat-user__action{ href: "/users/edit" }
           = fa_icon 'gear'
     %ul.chat-groups
       - @groups.each do |group|
@@ -16,7 +16,7 @@
   .chat-main
     .chat-header.clearfix
       .chat-header--left
-        %h2= @group.name
+        %h2 = @group.name
         %p.chat-header__users
           Members:
           - @users.each do |user|
