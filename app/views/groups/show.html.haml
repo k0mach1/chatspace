@@ -22,7 +22,7 @@
           - @users.each do |user|
             %span.chat-header__user= user.name
       .chat-header--right
-        %a.chat-header__edit-btn{:href => "/groups/#{@group.id}/edit"} Edit
+        %a.chat-header__edit-btn{ href: "/groups/#{@group.id}/edit"} Edit
     .chat-body
       %ul.chat-messages
         - @messages.each do |message|
