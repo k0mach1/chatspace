@@ -1,10 +1,12 @@
 = stylesheet_link_tag "group", :media => "all"
+:javascript
+  var username = '#{current_user.name}'
 .chat
   .chat-side
     .chat-user.clearfix
       %h5 = current_user.name
       .chat-user__actions
-        %a.chat-user__action{ href: "/chat_groups/new" }
+        %a.chat-user__action{href: "/groups/new"}
           = fa_icon 'pencil-square-o'
         %a.chat-user__action{ href: "/users/edit" }
           = fa_icon 'gear'
@@ -20,16 +22,16 @@
           - @users.each do |user|
             %span.chat-header__user= user.name
       .chat-header--right
-        %a.chat-header__edit-btn{ href: "/chat_groups/9342/edit" } Edit
+        %a.chat-header__edit-btn{ href: "/groups/#{@group.id}/edit"} Edit
     .chat-body
       %ul.chat-messages
         - @messages.each do |message|
           = render partial: 'message', locals: { message: message }
     .chat-footer
-      = form_for ([@group, @message]), html: { class: "new_message", id: "new_message" } do |f|
+      = form_for [@group, @message], class: 'clearfix' do |f|
         .chat-footer__body
-          = f.text_field :body, placeholder: 'type a message', html: { rows: '1', id: "message_body" }
+          = f.text_area :body, row: 1, placeholder: 'type a message'
           %label.chat-footer__file
-            = f.file_field :image, html: { i: "message_image" }
-            = fa_icon "file-image-o"
+            = f.file_field :avatar
+            %i.fa.fa-image
         = f.submit 'Send'

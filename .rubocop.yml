@@ -1,6 +1,4 @@
 AllCops:
-  Rails:
-    Enabled: true
   Include:
     - '**/Rakefile'
     - '**/config.ru'
@@ -13,5 +11,11 @@ AllCops:
     - !ruby/regexp /old_and_unused\.rb$/
 Metrics/LineLength:
     Max: 100
+    Exclude:
+      - 'app/uploaders/avatar_uploader.rb'
+
 Style/Documentation:
-    Enabled: false
+  Enabled: false
+
+Style/AsciiComments:
+  Enabled: false

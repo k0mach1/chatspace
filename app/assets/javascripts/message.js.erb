@@ -1,0 +1,56 @@
+$(function() {
+
+  function buildHTML(message) {
+    // appendするHTMLを定義
+    var append_me =
+      "<div class='chat-message__header clearfix'>"
+        + "<p class='chat-message__name'>"
+          + username
+        + "</p>"
+        + "<p class='chat-message__time'>"
+          + message.created_at
+        + "</p>"
+      + "</div>"
+      + "<p class='chat-message__body'>"
+        + message.body
+        if (image){
+          + image
+        }
+      + "</p>"
+
+    var html = $('<li class="chat-message">').append(append_me)
+    return html;
+   }
+
+  // 投稿の非同期化
+  $('.new_message').on('submit', function(e) {
+    e.preventDefault();
+     var formed_image = new FormData($(this)[0]);
+    message = $('textarea').val();
+    $.ajax({
+      type: 'POST',
+      url: window.location.href + "/messages",
+      data: {
+        message: {
+          body: message
+          if(typeof formed_image !== 'undefined') {
+            avatar: formed_image
+          }
+        }
+      },
+      dataType: 'json'
+    })
+    .done(function(data) {
+      var html = buildHTML(data);
+      $('.chat-messages').append(html);
+      $('textarea').val('');
+    })
+    .fail(function() {
+      alert('error');
+    });
+  });
+
+  // 10秒毎にぺーじをリロード
+  setInterval("location.reload()", 10000);
+
+});

@@ -3,14 +3,17 @@ class MessagesController < ApplicationController
 
   def create
     @message = Message.new(message_params)
-    return redirect_to @group, alert: 'sssssssssssssssssssssss' unless @message.save
-    redirect_to @group
+    return redirect_to @group, alert: 'messageを入力してください' unless @message.save
+    respond_to do |format|
+      format.html { redirect_to @group }
+      format.json { render json: @message }
+    end
   end
 
   private
 
   def message_params
-    params.require(:message).permit(:body).merge(
+    params.require(:message).permit(:body, :avatar).merge(
       group_id: params[:group_id],
       user_id: current_user.id
     )
@@ -20,3 +23,4 @@ class MessagesController < ApplicationController
     @group = Group.find(params[:group_id])
   end
 end
+1
