@@ -10,7 +10,9 @@ AllCops:
     - 'bin/*'
     - !ruby/regexp /old_and_unused\.rb$/
 Metrics/LineLength:
-  Enabled: false
+    Max: 100
+    Exclude:
+      - 'app/uploaders/avatar_uploader.rb'
 
 Style/Documentation:
   Enabled: false

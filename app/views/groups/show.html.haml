@@ -6,7 +6,7 @@
     .chat-user.clearfix
       %h5 = current_user.name
       .chat-user__actions
-        %a.chat-user__action{:href => "/groups/new"}
+        %a.chat-user__action{href: "/groups/new"}
           = fa_icon 'pencil-square-o'
         %a.chat-user__action{ href: "/users/edit" }
           = fa_icon 'gear'
